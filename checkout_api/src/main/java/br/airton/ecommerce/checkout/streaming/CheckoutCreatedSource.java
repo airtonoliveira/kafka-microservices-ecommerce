@@ -5,7 +5,7 @@ import org.springframework.messaging.MessageChannel;
 
 public interface CheckoutCreatedSource {
 
-    String OUTPUT = "checkout-created-input";
+    String OUTPUT = "checkout-created-output";
 
     @Output(OUTPUT)
     MessageChannel output();

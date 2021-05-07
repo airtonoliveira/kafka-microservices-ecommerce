@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/v1/checkout")
 @RequiredArgsConstructor
 public class CheckoutResource {
 
     private final CheckoutService checkoutService;
 
-    @PostMapping("/")
+    @PostMapping("/v1/checkout")
     public ResponseEntity<CheckoutResponse> create(@RequestBody CheckoutRequest checkoutRequest) {
         final CheckoutEntity checkoutEntity = checkoutService.create(checkoutRequest).orElseThrow();
         final CheckoutResponse checkoutResponse = CheckoutResponse.builder()

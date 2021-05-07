@@ -7,6 +7,7 @@ import com.hatanaka.ecommerce.checkout.event.CheckoutCreatedEvent;
 import com.hatanaka.ecommerce.payment.event.PaymentCreatedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
@@ -16,8 +17,10 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class CheckoutCreatedListener {
 
+    @Autowired
     private final CheckoutProcessor checkoutProcessor;
 
+    @Autowired
     private final PaymentService paymentService;
 
     @StreamListener(CheckoutProcessor.INPUT)

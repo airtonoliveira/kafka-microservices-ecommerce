@@ -13,8 +13,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Audited
-@EntityListeners(AuditingEntityListener.class)
+//@Audited
+//@EntityListeners(AuditingEntityListener.class)
 @Builder
 @Data
 @AllArgsConstructor

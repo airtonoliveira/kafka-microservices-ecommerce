@@ -5,7 +5,7 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface PaymentPaidSink {
 
-    String INPUT = "payment-paid-output";
+    String INPUT = "payment-paid-input";
 
     @Input(INPUT)
     SubscribableChannel input();

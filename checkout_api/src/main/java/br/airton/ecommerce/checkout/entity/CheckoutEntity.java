@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Audited
-@EntityListeners(AuditingEntityListener.class)
+//@Audited
+//@EntityListeners(AuditingEntityListener.class)
 @Builder
 @Data
 @NoArgsConstructor

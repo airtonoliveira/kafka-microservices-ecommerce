@@ -28,9 +28,11 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Override
     public Optional<CheckoutEntity> create(CheckoutRequest checkoutRequest) {
         log.info("M=create, checkoutRequest={}", checkoutRequest);
+        String codeUUID = uuidUtil.createUUID().toString();
+        CheckoutEntity.Status statusCreated = CheckoutEntity.Status.CREATED;
         final CheckoutEntity checkoutEntity = CheckoutEntity.builder()
-                .code(uuidUtil.createUUID().toString())
-                .status(CheckoutEntity.Status.CREATED)
+                .code(codeUUID)
+                .status(statusCreated)
                 .saveAddress(checkoutRequest.getSaveAddress())
                 .saveInformation(checkoutRequest.getSaveInfo())
                 .shipping(ShippingEntity.builder()
@@ -50,8 +52,8 @@ public class CheckoutServiceImpl implements CheckoutService {
                                         .collect(Collectors.toList()));
         final CheckoutEntity entity = checkoutRepository.save(checkoutEntity);
         final CheckoutCreatedEvent checkoutCreatedEvent = CheckoutCreatedEvent.newBuilder()
-                .setCheckoutCode(entity.getCode())
-                .setStatus(entity.getStatus().name())
+                .setCheckoutCode(codeUUID)
+                .setStatus(statusCreated.name())
                 .build();
         checkoutCreatedSource.output().send(MessageBuilder.withPayload(checkoutCreatedEvent).build());
         return Optional.of(entity);
